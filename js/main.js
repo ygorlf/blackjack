@@ -5,6 +5,7 @@
 	var suits = ['clubs', 'hearts', 'spades', 'diamonds'];
 	var cardsList = document.getElementById('cards-list');
 	var btnStart = document.getElementById('get-card');
+	var btnStand= document.getElementById('stand');
 	var message = document.getElementById('message');
 	var playAgain = document.getElementById('play-again');
 
@@ -99,30 +100,29 @@
 		var self = this;
 		console.log(self);
 
-		function oneMoreTime() {
+		playAgain.addEventListener('click', function() {
 			self.myCards = [];
 			self.score = 0;
 			cardsList.innerHTML = '';
 			message.innerHTML = '';
-			playAgain.style.display = 'none';
-			btnStart.style.display = 'block';
-		}
-
-		playAgain.addEventListener('click', function() {
-			oneMoreTime();
+			btnStart.removeAttribute('disabled');
 		});
 
 		if (self.score === 21) {
 			message.innerHTML = 'Hey, you are quite lucky!!!';
 			message.style.display = 'block';
-			btnStart.style.display = 'none';
-			playAgain.style.display ='block';
 		} else if (self.score > 21) {
 			message.innerHTML = 'Sorry, but you lose...';
 			message.style.display = 'block';
-			btnStart.style.display = 'none';
-			playAgain.style.display = 'block';
 		}
+	};
+
+	Player.prototype.stand = function() {
+		var self = this;
+
+		message.innerHTML = 'Okay, I get it... Your score is ' + self.score;
+		message.style.display = 'block';
+		btnStart.setAttribute('disabled', 'disabled');
 	};
 	// Create Deck and Player...
 	var deck = makeDeck(cards, suits);
@@ -134,4 +134,9 @@
 		ygor.getScore();
 		ygor.checkStatus();
 	});
+
+	btnStand.addEventListener('click', function() {
+		ygor.stand();
+	});
+
 })();

@@ -72,23 +72,25 @@ h2 {
 	font-size: 4em;
 }
 
-.btn {
-	width: 120px;
-	height: 30px;
+.player-actions {
+	display: flex;
+	justify-content: center;
 	position: absolute;
 	bottom: 10%;
 	left: 50%;
 	transform: translate(-50%);
+}
+
+.btn {
+	width: 120px;
+	height: 30px;
+	margin: 0 5px 0 0;
 
 	cursor: pointer;
 	color: white;
 	background: maroon;
 	border: none;
 	box-shadow: 2px 2px 0 rgba(0,0,0, .7);
-}
-
-.btn-again {
-	display: none;
 }
 
 .message {
