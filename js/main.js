@@ -106,13 +106,24 @@
 			cardsList.innerHTML = '';
 			message.innerHTML = '';
 			btnStart.removeAttribute('disabled');
+			btnStand.removeAttribute('disabled');
+			btnStart.style.opacity = 1;
+			btnStand.style.opacity = 1;
 		});
 
 		if (self.score === 21) {
 			message.innerHTML = 'Hey, you are quite lucky!!!';
+			btnStart.setAttribute('disabled', 'disabled');
+			btnStart.style.opacity = 0.4;
+			btnStand.setAttribute('disabled', 'disabled');
+			btnStand.style.opacity = 0.4;
 			message.style.display = 'block';
 		} else if (self.score > 21) {
 			message.innerHTML = 'Sorry, but you lose...';
+			btnStart.setAttribute('disabled', 'disabled');
+			btnStart.style.opacity = 0.4;
+			btnStand.setAttribute('disabled', 'disabled');
+			btnStand.style.opacity = 0.4;
 			message.style.display = 'block';
 		}
 	};
@@ -123,6 +134,8 @@
 		message.innerHTML = 'Okay, I get it... Your score is ' + self.score;
 		message.style.display = 'block';
 		btnStart.setAttribute('disabled', 'disabled');
+		btnStart.style.opacity = 0.4;
+		btnStand.style.opacity = 0.4;
 	};
 	// Create Deck and Player...
 	var deck = makeDeck(cards, suits);
